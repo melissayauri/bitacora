@@ -5,6 +5,7 @@ $(document).ready(function() {
   });
   /* se ejecuta cuando hay respuesta correcta de la solicitud en ajax*/
   objetoAJAX.done(function() {
+
     /* variables generales*/
     /* variable del container de publicaciones*/
     let publications = $('#publications');
@@ -35,6 +36,46 @@ $(document).ready(function() {
       $('#title').val('');
       $('#post').val('');
     };
+    /* modal para publicar la imagen*/
+    $('#imagen').modal();
+    /* evento para publicar la imagen*/
+    $('#postImg').on('click', postImagen);
+    /* función para post*/
+    function postImagen() {
+      /* variable para el título de la imagen*/
+      let titleImg = $('#titleImg').val();
+      publications.prepend(
+        `<div class="row">
+        <div class="col s12 l6 offset-l3">
+         <div class="card">
+           <div class="card-image">
+            <img src="${_location}">
+            <span class="card-title black-text">${titleImg}</span>
+           </div>
+         </div>
+      </div>
+     </div>`);
+      /* Limpiando el ingreso del título y el file*/
+      $('#titleImg').val('');
+      $('#file-imagens').val('');
+    };
+
+    /* evento para subir la imagen*/
+    $('#file-imagen').on('change', upload);
+    function upload() {
+      /* permite leer un archivo de tu disco duro local*/
+      var reader = new FileReader();
+      /* se obtiene el contenido del archivo*/
+      reader.onload = function(event) {
+        // console.log(event.target.result)
+  			_location = event.target.result;
+  		};
+      console.log(this.files);
+  		let file = this.files[0];
+      /* muestra la imagen*/
+      reader.readAsDataURL(file);
+    }
+
     /* verifica si hay error*/
     objetoAJAX.fail(function() {
       alert('verifica de nuevo');
