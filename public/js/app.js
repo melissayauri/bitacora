@@ -152,22 +152,22 @@ $(document).ready(function() {
       if (titleEvent === '' || date === '') {
         alert('no ingrese campos vacíos');
       } else {
-      let cardEvent = `<div class="row">
-      <div class="col s12 l6 offset-l3">
-      <div class="card red accent-1">
-      <div class="card-content white-text">
-      <span class="card-title">${titleEvent}</span>
-      <p>${date}</p>
-      <div class="map" id="map">
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>`;
-      publications.prepend(cardEvent);
-      initMap();
-      $('.empty').val('');
-    }
+        let cardEvent = `<div class="row">
+        <div class="col s12 l6 offset-l3">
+        <div class="card red accent-1">
+        <div class="card-content white-text">
+        <span class="card-title">${titleEvent}</span>
+        <p>${date}</p>
+        <div class="map" id="map">
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>`;
+        publications.prepend(cardEvent);
+        initMap();
+        $('.empty').val('');
+      }
     };
     /* verifica si hay error*/
     objetoAJAX.fail(function() {
