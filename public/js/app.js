@@ -60,8 +60,34 @@ $(document).ready(function() {
       $('#file-imagens').val('');
     };
 
-    /* evento para subir la imagen*/
-    $('#file-imagen').on('change', upload);
+
+    /* modal para publicar video o audio*/
+    $('#multimedia').modal();
+    /* evento para publicar un elemento multimedia*/
+    $('#postMultimedia').on('click', postMedia);
+    function postMedia() {
+      let titleMedias = $('#titleMedias').val();
+      let description = $('#description').val();
+      publications.prepend(
+        ` <div class="row">
+        <div class="col s12 l6 offset-l3">
+        <div class="card">
+        <div class="card-image red accent-1 ">
+        <video class="video-width video-zise" src="${_location}" controls loop></video>
+        </div>
+        <div class="card-content red accent-1">
+        <span class="card-title activator grey-text text-darken-4">${titleMedias}<i class="material-icons right">more_vert</i></span>
+        </div>
+        <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">${titleMedias}<i class="material-icons right">close</i></span>
+        <p>${description}</p>
+        </div>
+        </div>
+        </div>
+        </div>`);
+    };
+    /* evento para subir la imagen y*/
+    $('#file-imagen, #file-media').on('change', upload);
     function upload() {
       /* permite leer un archivo de tu disco duro local*/
       var reader = new FileReader();
@@ -69,13 +95,13 @@ $(document).ready(function() {
       reader.onload = function(event) {
         // console.log(event.target.result)
   			_location = event.target.result;
-  		};
+      };
       console.log(this.files);
   		let file = this.files[0];
       /* muestra la imagen*/
       reader.readAsDataURL(file);
     }
-
+    $('#date-event').modal();
     /* verifica si hay error*/
     objetoAJAX.fail(function() {
       alert('verifica de nuevo');
