@@ -71,3 +71,10 @@ El proyecto se trabajo en el sistema operativo Windows 10 (64 Bits).
       ![splash](public/assets/images/event3.PNG)
 
       ![splash](public/assets/images/event4.PNG)
+
+## Fuentes bibliográficas
+* [Ajax-jquery](https://desarrolloweb.com/articulos/entendiendo-ajax-jquery.html
+)
+* [Variables](https://www.campusmvp.es/recursos/post/JavaScript-Variables-y-funciones-privadas.aspx)
+* [FileReader API](http://blog.teamtreehouse.com/reading-files-using-the-html5-filereader-api)
+* [Validaciones-extensiones](http://programacion.net/articulo/validar_la_extension_de_un_fichero_con_javascript_1799)
