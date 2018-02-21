@@ -149,6 +149,9 @@ $(document).ready(function() {
     function postEvents() {
       let titleEvent = $('#titleEvent').val();
       let date = $('#date').val();
+      if (titleEvent === '' || date === '') {
+        alert('no ingrese campos vacíos');
+      } else {
       let cardEvent = `<div class="row">
       <div class="col s12 l6 offset-l3">
       <div class="card red accent-1">
@@ -164,6 +167,7 @@ $(document).ready(function() {
       publications.prepend(cardEvent);
       initMap();
       $('.empty').val('');
+    }
     };
     /* verifica si hay error*/
     objetoAJAX.fail(function() {
