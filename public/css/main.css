@@ -54,11 +54,6 @@ body {
 img[alt="splash"]{
   animation: fadein 1.5s;
    animation-iteration-count: infinite;
-}
-
-@media (min-width: 992px){
-  img[alt="splash"]{
-  width: 60%;
-  height: 50%;
-}
+   width: 60%;
+   height: 50%;
 }
