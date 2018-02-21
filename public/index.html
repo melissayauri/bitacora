@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,68 +13,80 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <h1 class="pink lighten-1-text">Flash Bitacora</h1>
+  <!--vista splash-->
+  <div class="container-fluid splash pink">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="white-text">Flash Bitacora</h1>
+        <img src="assets/images/splash.jpg" alt="splash" class="responsive-img" >
+        <h4 class="white-text">you can post whatever you want</h4>
+      </div>
+    </div>
+  </div>
+  <h1 class="pink white-text">Flash Bitacora</h1>
+  <!-- contenedor de publicaciones-->
   <div class="row">
     <div class="s12 l10">
       <div class="" id="publications">
-
-        </div>
+      </div>
     </div>
-
   </div>
-
+  <!-- botones-->
   <div class="fixed-action-btn horizontal">
     <a class="btn-floating btn-large red">
       <i class="large material-icons">mode_edit</i>
     </a>
     <ul>
       <li>
+        <!-- botón para adicionar mensaje-->
         <a class="btn-floating red modal-trigger" href="#message">
           <i class="material-icons">comment</i>
         </a>
       </li>
       <li>
+        <!-- botón para adicionar foto-->
         <a class="btn-floating yellow darken-1 modal-trigger" href="#imagen">
-          <i class="material-icons">add_to_photos</i>
+          <i class="material-icons">add_a_photo</i>
         </a>
       </li>
       <li>
+        <!-- botón para adicionar un video o audio-->
         <a class="btn-floating green modal-trigger" href="#multimedia">
-          <i class="material-icons">event</i>
+          <i class="material-icons">audiotrack</i>
         </a>
       </li>
       <li>
+        <!-- botón para adicionar un evento-->
         <a class="btn-floating blue modal-trigger" href="#date-event">
-          <i class="material-icons">video_library</i>
+          <i class="material-icons">event</i>
         </a>
       </li>
     </ul>
   </div>
-
   <!-- Modal Messages Section -->
   <div id="message" class="modal">
-      <div class="modal-content">
-        <div class="row">
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="title" type="text" class="validate">
-                <label for="title">Title</label>
-              </div>
-              <div class="input-field col s12">
-                <input id="post" type="text" class="validate">
-                <label for="message">Message</label>
-              </div>
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="title" type="text" class="validate empty">
+              <label for="title">Title</label>
             </div>
-          </form>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn waves-effect waves-light" type="submit" name="action" id="postMessage">Submit
-          <i class="material-icons right">send</i>
-        </button>
+            <div class="input-field col s12">
+              <input id="post" type="text" class="validate empty">
+              <label for="message">Message</label>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
+    <div class="modal-footer">
+      <button class="btn waves-effect waves-light" type="submit" name="action" id="postMessage">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </div>
   <!-- Modal Images Section -->
   <div id="imagen" class="modal">
     <div class="modal-content">
@@ -83,17 +94,17 @@
         <form action="#">
           <div class="row">
             <div class="input-field col s12">
-              <input id="titleImg" type="text" class="validate">
+              <input id="titleImg" type="text" class="validate empty">
               <label for="title">Title</label>
             </div>
           </div>
           <div class="file-field input-field">
             <div class="btn">
               <span>Images</span>
-              <input type="file" id="file-imagen">
+              <input type="file" id="file-imagen" >
             </div>
             <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" id="file-imagens">
+              <input class="file-path validate empty" type="text" id="file-imagens">
             </div>
           </div>
         </form>
@@ -112,11 +123,11 @@
         <form action="#">
           <div class="row">
             <div class="input-field col s12">
-              <input id="titleMedias" type="text" class="validate">
+              <input id="titleMedias" type="text" class="validate empty">
               <label for="title">Title</label>
             </div>
             <div class="input-field col s12">
-              <input id="description" type="text" class="validate">
+              <input id="description" type="text" class="validate empty">
               <label for="title">Description</label>
             </div>
           </div>
@@ -126,7 +137,7 @@
               <input type="file" id="file-media">
             </div>
             <div class="file-path-wrapper">
-              <input class="file-path validate" type="text">
+              <input class="file-path validate empty" type="text">
             </div>
           </div>
         </form>
@@ -145,12 +156,11 @@
         <form class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input id="titleEvent" type="text" class="validate">
+              <input id="titleEvent" type="text" class="validate empty">
               <label for="title">Title</label>
             </div>
             <div class="input-field col s12">
-              <input placeholder="Ingrese la fecha" type="text" class="datepicker" id="date">
-        
+              <input placeholder="Ingrese la fecha" type="text" class="datepicker empty" id="date">
             </div>
           </div>
         </form>
@@ -163,12 +173,14 @@
     </div>
   </div>
 
-  <!-- Import jQuery and Bootstrap.js -->
+  <!-- Import jQuery  -->
   <script src="vendors/js/jquery-3.2.1.js"></script>
-    <script src="vendors/js/materialize.min.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/app.js"></script>
-     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBueYkODHE9Em7WFAZSrodcAMlqDzf5RZE&libraries=places"></script>
-</body>
-
+  <!-- Import materialize  -->
+  <script src="vendors/js/materialize.min.js"></script>
+  <!-- enlazando con el mapa del api google maps -->
+  <script src="js/map.js"></script>
+  <script src="js/app.js"></script>
+  <!-- api google maps -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBueYkODHE9Em7WFAZSrodcAMlqDzf5RZE&libraries=places"></script>
+ </body>
 </html>

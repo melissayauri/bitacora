@@ -5,7 +5,7 @@ $(document).ready(function() {
   });
   /* se ejecuta cuando hay respuesta correcta de la solicitud en ajax*/
   objetoAJAX.done(function() {
-
+    $('.splash').delay(4000).fadeOut('slow');
     /* variables generales*/
     /* variable del container de publicaciones*/
     let publications = $('#publications');
@@ -33,13 +33,13 @@ $(document).ready(function() {
         </div>
         </div>
         </div>`;
-      /* incorporando la tarjeta*/
-      publications.prepend(cardMessage);
-      /* limpiando las entradas de la tarjeta de mensaje*/
-      $('#title').val('');
-      $('#post').val('');
-    }
+        /* incorporando la tarjeta*/
+        publications.prepend(cardMessage);
+        /* limpiando las entradas de la tarjeta de mensaje*/
+        $('.empty').val('');
+      };
     };
+
     /* modal para publicar la imagen*/
     $('#imagen').modal();
     /* evento para publicar la imagen*/
@@ -48,53 +48,79 @@ $(document).ready(function() {
     function postImagen() {
       /* variable para el título de la imagen*/
       let titleImg = $('#titleImg').val();
-      publications.prepend(
-        `<div class="row">
-        <div class="col s12 l6 offset-l3">
-         <div class="card">
-           <div class="card-image">
-            <img src="${_location}">
-            <span class="card-title black-text">${titleImg}</span>
-           </div>
-         </div>
+      /* variable para crear la tarjeta de imagen*/
+      let cardImagen = `<div class="row">
+      <div class="col s12 l6 offset-l3">
+      <div class="card">
+      <div class="card-image">
+      <img src="${_location}" class="" >
+      <span class="card-title black-text ">${titleImg}</span>
       </div>
-     </div>`);
-      /* Limpiando el ingreso del título y el file*/
-      $('#titleImg').val('');
-      $('#file-imagens').val('');
-    };
-
+      </div>
+      </div>
+      </div>`;
+      /*  validando que no se ingrese un campo vacio en el tiulo ni en la imagen*/
+      let fileInput = document.getElementById('file-imagen');
+      let filePath = fileInput.value;
+      let allowedExtensions = /(.jpg|.jpeg|.png|.gif)$/i;
+      if (!allowedExtensions.exec(filePath) || titleImg === '') {
+        alert('Porfavor no ingrese campos vacíos');
+        fileInput.value = '';
+        return false;
+      } else {
+        /* incorporando la tarjeta*/
+        publications.prepend(cardImagen);
+        /* Limpiando el ingreso del título y el file*/
+        $('.empty').val('');
+      };
+    }
 
     /* modal para publicar video o audio*/
     $('#multimedia').modal();
     /* evento para publicar un elemento multimedia*/
     $('#postMultimedia').on('click', postMedia);
+    /* función para publicar los elemetos multimedia*/
     function postMedia() {
+      /* variable para el título del elemento multimedia*/
       let titleMedias = $('#titleMedias').val();
+      /* descripción*/
       let description = $('#description').val();
-      publications.prepend(
-        ` <div class="row">
-        <div class="col s12 l6 offset-l3">
-        <div class="card">
-        <div class="card-image red accent-1 ">
-        <video class="video-width video-zise" src="${_location}" controls loop></video>
-        </div>
-        <div class="card-content red accent-1">
-        <span class="card-title activator grey-text text-darken-4">${titleMedias}<i class="material-icons right">more_vert</i></span>
-        </div>
-        <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">${titleMedias}<i class="material-icons right">close</i></span>
-        <p>${description}</p>
-        </div>
-        </div>
-        </div>
-        </div>`);
-    };
+      /* variable para crear la tarjeta multimedia*/
+      let cardMedia = ` <div class="row">
+      <div class="col s12 l6 offset-l3">
+      <div class="card">
+      <div class="card-image red accent-1 ">
+      <video class="video-width video-zise" src="${_location}" controls loop></video>
+      </div>
+      <div class="card-content red accent-1">
+      <span class="card-title activator grey-text text-darken-4">${titleMedias}<i class="material-icons right">more_vert</i></span>
+      </div>
+      <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">${titleMedias}<i class="material-icons right">close</i></span>
+      <p>${description}</p>
+      </div>
+      </div>
+      </div>
+      </div>`;
+      /* validando que los archivos sean solo tengan formatos de video o audio*/
+      let fileInputs = document.getElementById('file-media');
+      let filePaths = fileInputs.value;
+      let allowedExtensionss = /(.mp3|.midi|.wav|.WMA|.mp4|.webM|.ogg)$/i;
+      if (!allowedExtensionss.exec(filePaths) || titleMedias === '' || description === '') {
+        alert('Porfavor ingrese solo videos o audio, no se permite campos vacíos');
+        fileInputs.value = '';
+        return false;
+      } else {
+        /* incorporando la tarjeta*/
+        publications.prepend(cardMedia);
+        $('.empty').val('');
+      };
+    }
     /* evento para subir la imagen y*/
     $('#file-imagen, #file-media').on('change', upload);
     function upload() {
       /* permite leer un archivo de tu disco duro local*/
-      var reader = new FileReader();
+      let reader = new FileReader();
       /* se obtiene el contenido del archivo*/
       reader.onload = function(event) {
         // console.log(event.target.result)
@@ -107,48 +133,45 @@ $(document).ready(function() {
     }
     /* modal para crear un evento-día*/
     $('#date-event').modal();
+    /* incorporando el dia según el calendario*/
     $('.datepicker').pickadate({
-   selectMonths: true, // Creates a dropdown to control month
-   selectYears: 15, // Creates a dropdown of 15 years to control year,
-   today: 'Today',
-   clear: 'Clear',
-   close: 'Ok',
-    closeOnSelect: false // Close upon selecting a date,
- });
-   $('#postEvent').on('click', postEvents);
-   function postEvents(){
-     let titleEvent = $('#titleEvent').val();
-     let date = $('#date').val();
-       publications.prepend(
-         `  <div class="row">
-        <div class="col s12 l6 offset-l3">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">${titleEvent}</span>
-              <p>${date}</p>
-              <div class="map" id="map">
-
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>`
-       );
-        initMap();
-   }
-
-
-
-
+      /* Creates a dropdown to control month*/
+      selectMonths: true,
+      /* Creates a dropdown of 15 years to control year,*/
+      selectYears: 15,
+      today: 'Today',
+      clear: 'Clear',
+      close: 'Ok',
+      /* Close upon selecting a date,*/
+      closeOnSelect: false
+    });
+    $('#postEvent').on('click', postEvents);
+    function postEvents() {
+      let titleEvent = $('#titleEvent').val();
+      let date = $('#date').val();
+      let cardEvent = `<div class="row">
+      <div class="col s12 l6 offset-l3">
+      <div class="card red accent-1">
+      <div class="card-content white-text">
+      <span class="card-title">${titleEvent}</span>
+      <p>${date}</p>
+      <div class="map" id="map">
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>`;
+      publications.prepend(cardEvent);
+      initMap();
+      $('.empty').val('');
+    };
     /* verifica si hay error*/
     objetoAJAX.fail(function() {
       alert('verifica de nuevo');
     });
     // hacer algo tanto en error como en éxito
     objetoAJAX.always(function() {
-      console.log('esta hecho');
+      console.log('okey');
     });
   });
 });

@@ -28,3 +28,28 @@ body {
     height: 300px;
     color:black;
 }
+.card .card-image img{
+  border-radius: 10px;
+  height: 300px;
+}
+.splash{
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left:0;
+}
+/* efecto fadein al logo white*/
+@keyframes fadein {
+  from {opacity: 1;}
+  to {opacity: 0.3;}
+}
+img[alt="splash"]{
+  animation: fadein 1.5s;
+   animation-iteration-count: infinite;
+}
