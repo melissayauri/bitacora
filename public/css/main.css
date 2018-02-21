@@ -57,14 +57,7 @@ img[alt="splash"]{
 }
 
 @media (min-width: 992px){
-
-/*img .responsive-img {
-  max-width: 50%;
-    height: 100px;
-
-  }*/
-
-img[alt="splash"]{
+  img[alt="splash"]{
   width: 60%;
   height: 50%;
 }
