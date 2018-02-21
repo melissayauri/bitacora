@@ -19,22 +19,26 @@ $(document).ready(function() {
       let title = $('#title').val();
       /* variable para el mensaje*/
       let message = $('#post').val();
-      /* varibale para la tarjeta del mensaje*/
-      let cardMessage = `<div class="row">
-      <div class="col s12 l6 offset-l3">
-      <div class="card red accent-1 hoverable">
-      <div class="card-content black-text">
-      <h1 class="card-title white-text title">${title}</h1>
-      <p>${ message}</p>
-      </div>
-      </div>
-      </div>
-      </div>`;
+      if (title === '' && message === '') {
+        alert('no ingrese campos vacíos');
+      } else {
+        /* varibale para la tarjeta del mensaje*/
+        let cardMessage = `<div class="row">
+        <div class="col s12 l6 offset-l3">
+        <div class="card red accent-1 hoverable">
+        <div class="card-content black-text">
+        <h1 class="card-title white-text title">${title}</h1>
+        <p>${ message}</p>
+        </div>
+        </div>
+        </div>
+        </div>`;
       /* incorporando la tarjeta*/
       publications.prepend(cardMessage);
       /* limpiando las entradas de la tarjeta de mensaje*/
       $('#title').val('');
       $('#post').val('');
+    }
     };
     /* modal para publicar la imagen*/
     $('#imagen').modal();
@@ -101,7 +105,43 @@ $(document).ready(function() {
       /* muestra la imagen*/
       reader.readAsDataURL(file);
     }
+    /* modal para crear un evento-día*/
     $('#date-event').modal();
+    $('.datepicker').pickadate({
+   selectMonths: true, // Creates a dropdown to control month
+   selectYears: 15, // Creates a dropdown of 15 years to control year,
+   today: 'Today',
+   clear: 'Clear',
+   close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+ });
+   $('#postEvent').on('click', postEvents);
+   function postEvents(){
+     let titleEvent = $('#titleEvent').val();
+     let date = $('#date').val();
+       publications.prepend(
+         `  <div class="row">
+        <div class="col s12 l6 offset-l3">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">${titleEvent}</span>
+              <p>${date}</p>
+              <div class="map" id="map">
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>`
+       );
+        initMap();
+   }
+
+
+
+
     /* verifica si hay error*/
     objetoAJAX.fail(function() {
       alert('verifica de nuevo');
