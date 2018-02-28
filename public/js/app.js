@@ -41,7 +41,7 @@ $(document).ready(function() {
     };
 
     /* modal para publicar la imagen*/
-    $('#imagen').modal();
+    $('#imagenesss').modal();
     /* evento para publicar la imagen*/
     $('#postImg').on('click', postImagen);
     /* función para post*/
